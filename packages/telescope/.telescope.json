@@ -1,0 +1,22 @@
+{
+  "protoDirs": [
+    "/media/clockwork/Projects/Tendermint/cosmos-sdk/proto",
+    "/home/clockwork/go/pkg/mod/github.com/osmosis-labs/cosmos-sdk@v0.45.1-0.20221109234646-32fd2420e2f0/third_party/proto"
+  ],
+  "buildProto": [
+    "/media/clockwork/Projects/Tendermint/cosmos-sdk/proto/cosmos/bank/v1beta1/tx.proto",
+    "/media/clockwork/Projects/Tendermint/cosmos-sdk/proto/cosmos/bank/v1beta1/query.proto"
+  ],
+  "outPath": "codegen",
+  "options": {
+    "aminoEncoding": {
+      "enabled": true
+    },
+    "lcdClients": {
+      "enabled": true
+    },
+    "rpcClients": {
+      "enabled": true
+    }
+  }
+}

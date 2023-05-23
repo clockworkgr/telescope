@@ -1,33 +1,34 @@
-import { TelescopeOptions } from '@osmonauts/types';
+import { TelescopeOptions } from "@osmonauts/types";
 export interface Bundle {
-    bundleVariables: {};
-    bundleFile: string;
-    importPaths: any[];
-    base: string;
+  bundleVariables: {};
+  bundleFile: string;
+  importPaths: any[];
+  base: string;
 }
 export interface BundlerFile {
-    proto?: string;
-    package?: string;
-    localname: string;
-    filename: string;
+  proto?: string;
+  package?: string;
+  localname: string;
+  filename: string;
 }
 
 export interface ImportObj {
-    type: 'import' | 'default' | 'namespace' | string;
-    name: string;
-    path: string;
-    importAs?: string;
+  type: "import" | "default" | "namespace" | string;
+  name: string;
+  path: string;
+  importAs?: string;
 }
 
 export interface DerivedImportObj extends ImportObj {
-    orig: string;
+  orig: string;
 }
 export interface ImportHash {
-    [key: string]: string[];
+  [key: string]: string[];
 }
 
 export interface TelescopeInput {
-    protoDirs: string[];
-    outPath: string;
-    options: TelescopeOptions;
+  protoDirs: string[];
+  buildProto: string[];
+  outPath: string;
+  options: TelescopeOptions;
 }
