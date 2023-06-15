@@ -71,7 +71,7 @@ export class TelescopeBuilder {
     this.includeDirs = includeDirs;
     this.outPath = resolve(outPath);
     this.options = sanitizeOptions(options);
-    this.store = store ?? new ProtoStore(protoDirs, this.options);
+    this.store = store ?? new ProtoStore(protoDirs, includeDirs, this.options);
     this.store.traverseAll();
   }
 
