@@ -139,7 +139,17 @@ export class ProtoStore {
 
   getProtos(): ProtoRef[] {
     if (this.protos) return this.protos;
-    const allcontents = this.includeDirs.reduce((m, protoDir) => {
+    const allcontents = this.includeDirs.reduce((m, includeDir) => {
+      const protoSplat = join(includeDir, "/**/*.proto");
+      const protoFiles = glob(protoSplat);
+      const contents = protoFiles.map((filename) => ({
+        absolute: filename,
+        filename: filename.split(includeDir)[1].replace(/^\//, ""),
+        content: readFileSync(filename, "utf-8"),
+      }));
+      return [...m, ...contents];
+    }, []);
+    const buildcontents = this.protoDirs.reduce((m, protoDir) => {
       const protoSplat = join(protoDir, "/**/*.proto");
       const protoFiles = glob(protoSplat);
       const contents = protoFiles.map((filename) => ({
@@ -149,11 +159,6 @@ export class ProtoStore {
       }));
       return [...m, ...contents];
     }, []);
-    const buildcontents = this.protoDirs.map((filename) => ({
-      absolute: filename,
-      filename: filename,
-      content: readFileSync(filename, "utf-8"),
-    }));
     const registeredProtos = [];
     const buildprotos = this.processProtos(buildcontents).filter((proto) => {
       if (registeredProtos.includes(proto.filename)) {
